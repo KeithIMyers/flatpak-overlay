@@ -1,0 +1,11 @@
+--- configure.ac	2017-04-16 00:56:18.082525550 -0400
++++ configure.ac	2017-04-16 00:56:24.487210313 -0400
+@@ -352,7 +352,7 @@
+ 	CFLAGS="$CFLAGS \
+ 		-Wall -Wstrict-prototypes -Werror=missing-prototypes \
+ 		-Werror=implicit-function-declaration \
+-		-Werror=pointer-arith -Werror=init-self -Werror=format=2 \
++		-Werror=pointer-arith -Werror=init-self \
+ 		-Werror=missing-include-dirs -Werror=aggregate-return \
+ 		-Werror=declaration-after-statement"
+ fi

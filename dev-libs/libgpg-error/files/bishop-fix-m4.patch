@@ -1,0 +1,13 @@
+diff --git a/src/gpg-error.m4 b/src/gpg-error.m4
+index 60c88d8..af68fda 100644
+--- a/src/gpg-error.m4
++++ b/src/gpg-error.m4
+@@ -60,7 +60,7 @@ AC_DEFUN([AM_PATH_GPG_ERROR],
+      fi
+   fi
+ 
+-  AC_PATH_PROG(GPG_ERROR_CONFIG, gpg-error-config, no)
++  AC_PATH_TOOL(GPG_ERROR_CONFIG, gpg-error-config, no)
+   min_gpg_error_version=ifelse([$1], ,0.0,$1)
+   AC_MSG_CHECKING(for GPG Error - version >= $min_gpg_error_version)
+   ok=no

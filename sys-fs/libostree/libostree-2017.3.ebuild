@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Id$
 
-EAPI="6"
+EAPI="5"
 
 inherit autotools eutils systemd
 
@@ -21,40 +21,49 @@ KEYWORDS="amd64"
 # so we force it.
 REQUIRED_USE="|| ( soup curl )"
 
+# TODO(nicholasbishop): check on fuse-2.9.2, glib-2.40:2
 # NOTE2: curl needs soup for tests right now (17 Feb 2017)
 RDEPEND="
-	>=dev-libs/glib-2.40:2
+	dev-libs/glib
 	>=app-arch/xz-utils-5.0.5
 	sys-libs/zlib
 	>=sys-fs/fuse-2.9.2
 	>=app-crypt/gpgme-1.1.8
 	>=app-arch/libarchive-2.8
-	curl? ( >=net-misc/curl-7.29 )
-	soup? ( >=net-libs/libsoup-2.40 )
+	net-misc/curl
 	systemd? ( sys-apps/systemd )
 "
+
+# TODO(nicholasbishop): libsoup-2.42 is min version because
+# SOUP_CHECK_VERSION is used which was not added until 2.42. Orig
+# ebuild had libsoup-2.40 here.
+
 DEPEND="${RDEPEND}
 	sys-devel/bison
 	virtual/pkgconfig
 	sys-fs/e2fsprogs
-	curl? ( >=net-libs/libsoup-2.40 )
+	curl? ( >=net-libs/libsoup-2.42 )
 	introspection? ( >=dev-libs/gobject-introspection-1.34 )
 	doc? ( >=dev-util/gtk-doc-1.15 )
 	man? ( dev-libs/libxslt )
 "
 
+RESTRICT=mirror
+
 src_prepare() {
 
 	# FIXME: should work through the build system really
-	eapply ${FILESDIR}/0001-ot-gpg-utils-use-gentoo-include-path.patch
+	epatch "${FILESDIR}/0001-ot-gpg-utils-use-gentoo-include-path.patch"
 
-	eapply_user
+	#eapply_user
 
 	eautoreconf
 
 }
 
 src_configure() {
+	# TODO(nicholasbishop): hack
+	export GPGME_CONFIG=$(which ${CHOST}-gpgme-config)
 
 	local myconf=()
 

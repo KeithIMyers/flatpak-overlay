@@ -1,7 +1,7 @@
 # Copyright 1999-207 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="6"
+EAPI="5"
 
 inherit autotools linux-info
 
@@ -27,9 +27,11 @@ RDEPEND="
 	policykit? ( >=sys-auth/polkit-0.98 )
 	seccomp? ( sys-libs/libseccomp )
 "
+
+# TODO(nicholasbishop): removed deps:
+#	>=sys-devel/gettext-0.18.2
 DEPEND="${RDEPEND}
 	>=sys-devel/automake-1.13.4
-	>=sys-devel/gettext-0.18.2
 	virtual/pkgconfig
 	dev-util/gdbus-codegen
 	introspection? ( >=dev-libs/gobject-introspection-1.40 )
@@ -43,6 +45,8 @@ PDEPEND="
 	gnome? ( sys-apps/xdg-desktop-portal
 		 sys-apps/xdg-desktop-portal-gtk )
 "
+
+RESTRICT=mirror
 
 pkg_setup() {
 
