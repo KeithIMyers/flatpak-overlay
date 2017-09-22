@@ -1,6 +1,5 @@
-# Copyright 1999-2016 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI="5"
 
@@ -13,7 +12,7 @@ HOMEPAGE="https://github.com/ostreedev/ostree"
 LICENSE="LGPL-2"
 SLOT="0"
 
-IUSE="curl introspection doc man +soup systemd"
+IUSE="avahi curl introspection doc +libmount man openssl +soup +systemd"
 
 KEYWORDS="amd64"
 
@@ -30,8 +29,12 @@ RDEPEND="
 	>=sys-fs/fuse-2.9.2
 	>=app-crypt/gpgme-1.1.8
 	>=app-arch/libarchive-2.8
-	net-misc/curl
+	avahi? ( >=net-dns/avahi-0.6.31 )
+	curl? ( >=net-misc/curl-7.29 )
+	openssl? ( >=dev-libs/openssl-1.0.1 )
+	soup? ( >=net-libs/libsoup-2.40 )
 	systemd? ( sys-apps/systemd )
+	libmount? ( >=sys-apps/util-linux-2.23 )
 "
 
 # TODO(nicholasbishop): libsoup-2.42 is min version because
@@ -68,7 +71,7 @@ src_configure() {
 	local myconf=()
 
 	# FIXME: it is not possible to hard disable systemd in the configure script.
-	# systemd only seems needed for booting ostree
+	# systemd only seems needed for booting ostree images
 	use systemd \
 		&& myconf+=( --with-systemdsystemunitdir="$(systemd_get_systemunitdir)" )
 
@@ -86,10 +89,12 @@ src_configure() {
 		--without-mkinitcpio \
 		--with-libarchive \
 		--without-selinux \
-		--without-libmount \
 		$(use_enable introspection) \
 		$(use_enable doc gtk-doc) \
 		$(use_enable man) \
+		$(use_with avahi) \
+		$(use_with libmount) \
+		$(use_with openssl) \
 		"${myconf[@]}"
 
 }
@@ -98,7 +103,6 @@ src_install() {
 
 	default
 
-	# FIXME: figure out what is failing
 	# see https://github.com/fosero/flatpak-overlay/issues/1
 	rm -f ${D}/etc/grub.d/15_ostree
 
