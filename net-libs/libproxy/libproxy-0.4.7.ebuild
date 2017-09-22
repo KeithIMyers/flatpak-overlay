@@ -32,6 +32,10 @@ RDEPEND="gnome? ( >=dev-libs/glib-2.26:2 )
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
+cros_pre_src_prepare_enable_cxx_exceptions() {
+	cros_enable_cxx_exceptions
+}
+
 pkg_setup() {
 	DOCS="AUTHORS ChangeLog NEWS README"
 
