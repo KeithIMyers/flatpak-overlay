@@ -26,7 +26,7 @@ RDEPEND="
 	dev-libs/glib
 	>=app-arch/xz-utils-5.0.5
 	sys-libs/zlib
-	>=sys-fs/fuse-2.9.2
+	sys-fs/fuse
 	>=app-crypt/gpgme-1.1.8
 	>=app-arch/libarchive-2.8
 	avahi? ( >=net-dns/avahi-0.6.31 )
