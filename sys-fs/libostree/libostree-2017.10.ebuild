@@ -53,17 +53,6 @@ DEPEND="${RDEPEND}
 
 RESTRICT=mirror
 
-src_prepare() {
-
-	# FIXME: should work through the build system really
-	epatch "${FILESDIR}/0001-ot-gpg-utils-use-gentoo-include-path.patch"
-
-	#eapply_user
-
-	eautoreconf
-
-}
-
 src_configure() {
 	# TODO(nicholasbishop): hack
 	export GPGME_CONFIG=$(which ${CHOST}-gpgme-config)
