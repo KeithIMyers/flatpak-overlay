@@ -44,6 +44,8 @@ PDEPEND="
 		 sys-apps/xdg-desktop-portal-gtk )
 "
 
+RESTRICT=mirror
+
 pkg_pretend() {
 
 	if [ -d "/var/lib/lib/flatpak" ]; then
