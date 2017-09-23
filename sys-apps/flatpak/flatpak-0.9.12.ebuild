@@ -74,6 +74,8 @@ pkg_setup() {
 }
 
 src_configure() {
+	# TODO(nicholasbishop): hack
+	export GPGME_CONFIG=$(which ${CHOST}-gpgme-config)
 
 	# FIXME: the gtk-doc check doesn't seem to be working
 	# FIXME: split out bubblewrap
