@@ -1,0 +1,15 @@
+--- configure.ac	2017-09-23 16:05:43.965322967 -0400
++++ configure.ac	2017-09-23 16:05:58.113025817 -0400
+@@ -2525,9 +2525,9 @@
+ 	AC_SUBST([XWAYLAND_LIBS])
+ 	AC_SUBST([XWAYLAND_SYS_LIBS])
+ 
+-	if test "x$MONOTONIC_CLOCK" != xyes; then
+-		AC_MSG_ERROR([Xwayland requires CLOCK_MONOTONIC support.])
+-	fi
++	dnl if test "x$MONOTONIC_CLOCK" != xyes; then
++	dnl 	AC_MSG_ERROR([Xwayland requires CLOCK_MONOTONIC support.])
++	dnl fi
+ 
+ 	WAYLAND_PREFIX=`$PKG_CONFIG --variable=prefix wayland-client`
+ 	AC_PATH_PROG([WAYLAND_SCANNER], [wayland-scanner],,
