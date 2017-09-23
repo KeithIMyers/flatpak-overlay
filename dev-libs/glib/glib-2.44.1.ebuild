@@ -27,6 +27,7 @@ SRC_URI="${SRC_URI}
 LICENSE="LGPL-2+"
 SLOT="2"
 IUSE="dbus fam kernel_linux +mime selinux static-libs systemtap test utils xattr"
+IUSE="${IUSE} cros_host"
 REQUIRED_USE="
 	utils? ( ${PYTHON_REQUIRED_USE} )
 	test? ( ${PYTHON_REQUIRED_USE} )
