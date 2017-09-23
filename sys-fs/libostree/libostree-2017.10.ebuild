@@ -23,7 +23,7 @@ REQUIRED_USE="|| ( soup curl )"
 # TODO(nicholasbishop): check on fuse-2.9.2, glib-2.40:2
 # NOTE2: curl needs soup for tests right now (17 Feb 2017)
 RDEPEND="
-	dev-libs/glib
+	>=dev-libs/glib-2.40:2
 	>=app-arch/xz-utils-5.0.5
 	sys-libs/zlib
 	sys-fs/fuse
