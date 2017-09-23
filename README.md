@@ -45,4 +45,25 @@ Refresh configs:
 
     ./setup_board --board=chromeover64 --skip_chroot_upgrade --regen_configs
 
-emerge-<board> flatpak
+Add flatpak as a runtime dependency somewhere, rebuild packages and
+the image.
+
+#### Runtime Notes
+
+If running in a VM it's helpful to create a separate storage drive for
+the apps:
+
+    host$ qemu-img create data.bin 16G
+      vm$ mkfs.ext4 /dev/sdb
+      vm$ mkdir /var/lib/flatpak
+      vm$ mount /dev/sdb /var/lib/flatpak
+
+You must log in for the wayland socket to be active, guest user is not
+enough.
+
+Example of installing an app:
+
+    flatpak remote-add --if-not-exists gnome https://sdk.gnome.org/gnome.flatpakrepo
+    flatpak install --from https://git.gnome.org/browse/gnome-apps-nightly/plain/gedit.flatpakref?h=stable
+    flatpak run org.gnome.gedit
+    XDG_RUNTIME_DIR=/run/chrome flatpak run org.gnome.gedit
