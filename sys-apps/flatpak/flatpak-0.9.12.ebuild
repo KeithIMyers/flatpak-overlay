@@ -30,7 +30,6 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}
 	>=sys-devel/automake-1.13.4
-	>=sys-devel/gettext-0.18.2
 	virtual/pkgconfig
 	dev-util/gdbus-codegen
 	introspection? ( >=dev-libs/gobject-introspection-1.40 )
