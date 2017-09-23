@@ -29,3 +29,20 @@ Change `repo-location` to a path of your choosing and then run `emerge --sync`, 
 You can also use the Layman tool to add and sync the overlay, read the instructions on the [Gentoo Wiki](http://wiki.gentoo.org/wiki/Layman#Adding_custom_overlays).
 
 The repositories.xml can be found at `https://raw.githubusercontent.com/fosero/flatpak-overlay/master/repositories.xml`.
+
+### Neverware
+
+Add the overlay to the build:
+
+    git clone git@github.com:neverware/flatpak-overlay.git src/private-overlays
+    
+Add the overlay to the board masters:
+
+    src/private-overlays/overlay-<board>-private/metadata/layout.conf
+    masters = ... flatpak-overlay
+
+Refresh configs:
+
+    ./setup_board --board=chromeover64 --skip_chroot_upgrade --regen_configs
+
+emerge-<board> flatpak
