@@ -19,6 +19,7 @@ RDEPEND="
     x11-libs/libXau
     x11-libs/libXdmcp
     x11-libs/libXfont2
+    x11-apps/xkbcomp
 "
 
 DEPEND="
