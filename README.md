@@ -48,6 +48,11 @@ Refresh configs:
 
     ./setup_board --board=chromeover64 --skip_chroot_upgrade --regen_configs
 
+Build:
+
+    emerge-chromeover64 gdbus-codegen  # not sure why, but doing this first fixed some dependency errors
+    emerge-chromeover64 Xwayland
+    emerge-chromeover64 flatpak
 Add flatpak as a runtime dependency somewhere, rebuild packages and
 the image.
 
