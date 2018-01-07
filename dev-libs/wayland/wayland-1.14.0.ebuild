@@ -18,7 +18,7 @@ if [[ $PV = 9999* ]]; then
 	SRC_URI=""
 else
 	SRC_URI="https://wayland.freedesktop.org/releases/${P}.tar.xz"
-	KEYWORDS="*"
+	KEYWORDS="~alpha amd64 ~arm ~arm64 ~hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc x86"
 fi
 
 LICENSE="MIT"
@@ -44,12 +44,9 @@ src_prepare() {
 
 multilib_src_configure() {
 	local myconf
-    # TODO(nicholasbishop): not sure what this is about, but
-    # commenting it out fixes build
-
-	# if tc-is-cross-compiler ; then
-	# 	#myconf+=' --with-host-scanner '
-	# fi
+	if tc-is-cross-compiler ; then
+		myconf+=' --with-host-scanner '
+	fi
 
 	ECONF_SOURCE="${S}" econf \
 		--disable-static \
