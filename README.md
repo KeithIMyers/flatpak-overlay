@@ -73,5 +73,4 @@ Example of installing an app:
 
     flatpak remote-add --if-not-exists gnome https://sdk.gnome.org/gnome.flatpakrepo
     flatpak install --from https://git.gnome.org/browse/gnome-apps-nightly/plain/gedit.flatpakref?h=stable
-    flatpak run org.gnome.gedit
     XDG_RUNTIME_DIR=/run/chrome flatpak run org.gnome.gedit
