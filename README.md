@@ -34,7 +34,10 @@ The repositories.xml can be found at `https://raw.githubusercontent.com/fosero/f
 
 Add the overlay to the build:
 
-    cd src/private-overlays && git clone git@github.com:neverware/flatpak-overlay.git
+    cd src/private-overlays
+    git clone git@github.com:neverware/flatpak-overlay.git
+    cd flatpak-overlay
+    git checkout <neverware branch>
     
 Add the overlay to the board masters:
 
