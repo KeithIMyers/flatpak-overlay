@@ -39,7 +39,6 @@ src_configure() {
 	econf \
         --disable-devel-docs \
         --disable-docs \
-        --disable-glx \
         --disable-xnest \
         --disable-xorg \
         --disable-xquartz \

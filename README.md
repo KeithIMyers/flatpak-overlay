@@ -74,3 +74,21 @@ Example of installing an app:
     flatpak remote-add --if-not-exists gnome https://sdk.gnome.org/gnome.flatpakrepo
     flatpak install --from https://git.gnome.org/browse/gnome-apps-nightly/plain/gedit.flatpakref?h=stable
     XDG_RUNTIME_DIR=/run/chrome flatpak run org.gnome.gedit
+
+#### Xwayland
+
+After logging in, start the Xwayland server:
+
+    sudo -u chronos XDG_RUNTIME_DIR=/run/chrome Xwayland :0
+
+Then run the flatpak:
+
+    sudo -u chronos DISPLAY=:0 flatpak -v run com.valvesoftware.Steam
+
+This particular package requires the GLX extension, so Mesa has to be
+compiled such that it produces a libGL. Requires deps `libXdamage` and
+`libXfixes`. Configure Mesa with `--enable-glx=dri`.
+
+On the client:
+
+    ln -s /usr/lib64/opengl/xorg-x11/lib/libGL.so.1 /usr/lib64/libGL.so.1
